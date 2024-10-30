@@ -2,7 +2,12 @@ version: 0.0
 os: linux
 files:
   - source: front_end/index.html
-    destination: /var/www/html/
+    destination: /var/www/html/index.html
+  - source: front_end/css/styles.css
+    destination: /var/www/html/css/styles.css
+  - source: front_end/js/scripts.js
+    destination: /var/www/html/js/scripts.js
+
 hooks:
   BeforeInstall:
     - location: server_script/install_dependencies
@@ -15,4 +20,3 @@ hooks:
     - location: server_script/stop_server
       timeout: 300
       runas: root
-
