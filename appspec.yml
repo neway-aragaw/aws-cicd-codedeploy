@@ -10,13 +10,21 @@ files:
 
 hooks:
   BeforeInstall:
+    # Ensure destination directories exist
+    - run: mkdir -p /var/www/html/css /var/www/html/js
+      timeout: 300
+      runas: root
+    # Install dependencies
     - location: server_script/install_dependencies
       timeout: 300
       runas: root
+    # Start server after installation
     - location: server_script/start_server
       timeout: 300
       runas: root
+
   ApplicationStop:
+    # Stop server before new deployment
     - location: server_script/stop_server
       timeout: 300
       runas: root
