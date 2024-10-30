@@ -1,0 +1,4 @@
+#!/bin/bash
+# server_script/create_directories
+mkdir -p /var/www/html/css
+mkdir -p /var/www/html/js
