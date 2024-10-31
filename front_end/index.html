@@ -5,45 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Appointment Booking</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Basic styles */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            text-align: left;
+        }
+        input, select, button {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-<img  src="data:image/jpeg;base64,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" alt="">     
-   <h1>Book Your Appointment</h1>
-        <form id="appointmentForm">
-            <label for="specialty">Select Specialty:</label>
-            <select id="specialty" required>
-                <option value="">-- Select Specialty --</option>
-                <option value="cardiology">Cardiology</option>
-                <option value="neurology">Neurology</option>
-                <option value="orthopedics">Orthopedics</option>
-                <option value="pediatrics">Pediatrics</option>
-                <option value="dermatology">Dermatology</option>
-            </select>
-
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..." alt="Hospital logo">
+        <h2>Book an Appointment</h2>
+        <form action="/submit-appointment" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+            
             <label for="doctor">Choose Doctor:</label>
-            <select id="doctor" required>
-                <option value="">-- Choose Doctor --</option>
-                <option value="dr_smith">Dr. Solomon</option>
-                <option value="dr_jones">Dr. Abel</option>
-                <option value="dr_kim">Dr. Kedir</option>
+            <select id="doctor" name="doctor" required>
+                <option value="dr_smith">Dr. Smith</option>
+                <option value="dr_jones">Dr. Jones</option>
             </select>
-
-            <label for="date">Appointment Date:</label>
-            <input type="date" id="date" required>
-
-            <label for="time">Select Time Slot(ETH):</label>
-            <select id="time" required>
-                <option value="">-- Select Time --</option>
-                <option value="9am">9:00 AM</option>
-                <option value="11am">11:00 AM</option>
-                <option value="1pm">1:00 PM</option>
-                <option value="3pm">3:00 PM</option>
-            </select>
-
+            
             <button type="submit">Book Appointment</button>
         </form>
     </div>
-    <script src="js/scripts.js"></script>
 </body>
 </html>
