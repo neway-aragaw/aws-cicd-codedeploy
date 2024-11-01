@@ -3,17 +3,11 @@ os: linux
 files:
   - source: front_end/index.html
     destination: /var/www/html/index.html
-  - source: front_end/css/styles.css
-    destination: /var/www/html/css/styles.css
   - source: front_end/js/scripts.js
     destination: /var/www/html/js/scripts.js
 
 hooks:
   BeforeInstall:
-    # Ensure destination directories exist
-    - run: mkdir -p /var/www/html/css /var/www/html/js
-      timeout: 300
-      runas: root
     # Install dependencies
     - location: server_script/install_dependencies
       timeout: 300
